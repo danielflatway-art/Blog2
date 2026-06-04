@@ -130,47 +130,31 @@ cursor:pointer;
 </style>
 </head>
 
-<body class="bg-[#faf7f5] text-[#1a1a1a]">
+<body class="bg-[#faf7f5] text-[#1a1a1a] pt-[70px]">
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-30 bg-white border-b border-black/5">
-    <div class="max-w-[1240px] mx-auto px-5 py-[14px] flex items-center justify-between gap-5">
+  
+<header class="fixed top-0 left-0 w-full z-30 bg-white shadow">
+<div class="h-[70px] w-full flex justify-between items-center px-[30px] gap-10">
 
-      <!-- Logo -->
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-[#7A1E1E] flex items-center justify-center text-white font-bold text-[20px]">
-          F
-        </div>
-        <div class="font-bold text-[18px] tracking-[0.02em] text-[#111111]">
-          Flatway
-        </div>
-      </div>
+<a href="https://flatway.fr/" aria-label="Accueil">
+<img src="https://flatway.fr/_next/static/media/appIcon.4beb43c9.webp" width="48" height="48" alt="Flatway">
+</a>
 
-      <!-- Nav -->
-      <nav class="hidden md:flex items-center gap-[26px] text-[15px]" aria-label="Navigation principale">
-        <a href="estimer" class="text-[#333333] font-medium hover:underline">Estimer</a>
-        <a href="acheter" class="text-[#333333] font-medium hover:underline">Acheter</a>
-        <a href="vendre" class="text-[#333333] font-medium hover:underline">Vendre</a>
-        <a href="blog"
-           class="relative text-[#7A1E1E] font-medium after:content-[''] after:absolute after:left-0 after:-bottom-[6px] after:h-[2px] after:w-full after:rounded-full after:bg-[#7A1E1E]">
-          Blog
-        </a>
-      </nav>
+<div class="hidden sm:flex w-full px-[10px]">
+<a href="https://flatway.fr/estimation" class="text-[#980000] px-2 py-2 rounded-lg text-md font-medium hover:bg-gray-100">Estimer</a>
+<a href="https://flatway.fr/consultation?searchAreaId=paris-75001-75056&propertyTypes=1,2" class="text-[#980000] px-2 py-2 rounded-lg text-md font-medium hover:bg-gray-100">Acheter</a>
+<a href="https://flatway.fr/comment-vendre" class="text-[#980000] px-2 py-2 rounded-lg text-md font-medium hover:bg-gray-100">Vendre</a>
+</div>
 
-      <!-- CTA -->
-      <div class="flex items-center gap-3 text-[14px]">
-        <button type="button"
-                class="rounded-full border border-[#dddddd] px-4 py-[7px] bg-white cursor-pointer text-sm">
-          Vous êtes professionnel ?
-        </button>
-        <button type="button"
-                class="rounded-full border-none px-[18px] py-2 bg-[#7A1E1E] text-white cursor-pointer text-sm shadow-[0_4px_12px_rgba(122,30,30,0.35)] hover:bg-[#5c1616]">
-          Découvrir Flatway
-        </button>
-      </div>
+<a href="https://flatway.fr/login/professionnel"
+class="hidden md:flex items-center gap-2 whitespace-nowrap border border-gray-200 px-4 py-2 rounded-md hover:bg-gray-50">
+Se connecter
+</a>
 
-    </div>
-  </header>
+</div>
+</header>
+
 
   <!-- HERO -->
   <section class="relative text-white overflow-hidden"
@@ -394,16 +378,11 @@ function renderCategories(){
   container.innerHTML=Object.entries(grouped).map(([cat,articles])=>`
   <section class="py-12">
     <div class="flex items-center justify-between mb-6">
-  <h2 class="text-[28px] font-bold text-[#2b1b1b]">
-    ${CATEGORY_LABELS[cat] || cat}
-  </h2>
-
-  <a
-    href="categorie.html?categorie=${encodeURIComponent(cat)}"
-    class="text-[#7A1E1E] font-semibold hover:underline">
-    Voir tous les articles →
-  </a>
-</div>
+      <h2 class="text-[28px] font-bold text-[#2b1b1b]">${CATEGORY_LABELS[cat]||cat}</h2>
+      <a href="categorie.html?categorie=${encodeURIComponent(cat)}" class="text-[#7A1E1E] font-semibold hover:underline">
+      Voir tous les articles →
+      </a>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       ${articles.slice(0,3).map(a=>`
       <a href="article.html?slug=${encodeURIComponent(a.slug||'')}" class="article-card block">
