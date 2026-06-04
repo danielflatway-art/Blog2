@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chargement...</title>
+  <meta name="description" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="m-0 bg-white text-[#1a1a1a] pt-[70px]">
+  <div id="app"></div>
+
+  <script>
+    const slug = new URLSearchParams(window.location.search).get('slug');
+
+    if (!slug) {
+      document.getElementById('app').innerHTML =
+        '<h1 style="padding:40px">Aucun slug fourni.</h1>';
+    } else {
+      fetch('./articles-blog.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Impossible de charger le JSON');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const article = data.articles.find(
+            a => a.slug === slug
+          );
+
+          if (!article) {
+            document.getElementById('app').innerHTML =
+              '<h1 style="padding:40px">Article introuvable</h1>';
+            return;
+          }
+
+          // SEO
+          document.title = article.seo_title || article.title;
+
+          const metaDescription =
+            document.querySelector('meta[name="description"]');
+
+          if (metaDescription) {
+            metaDescription.setAttribute(
+              'content',
+              article.meta_description || ''
+            );
+          }
+
+          // Canonical
+          if (article.canonical) {
+            const canonical = document.createElement('link');
+            canonical.rel = 'canonical';
+            canonical.href = article.canonical;
+            document.head.appendChild(canonical);
+          }
+
+          // Affichage du contenu HTML stocké dans le JSON
+          document.getElementById('app').innerHTML =
+            article.content_html ||
+            '<p style="padding:40px">Contenu indisponible.</p>';
+        })
+        .catch(error => {
+          console.error(error);
+
+          document.getElementById('app').innerHTML =
+            '<h1 style="padding:40px">Erreur de chargement</h1>';
+        });
+    }
+  </script>
+</body>
+</html>
