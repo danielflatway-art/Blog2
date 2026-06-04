@@ -118,8 +118,13 @@ return;
 document.title = article.seo_title || article.title;
 
 const related = data.articles
-.filter(a => a.slug !== article.slug)
-.slice(0,3);
+.filter(a =>
+a.slug !== article.slug &&
+a.category &&
+article.category &&
+a.category.toLowerCase() === article.category.toLowerCase()
+)
+.slice(0,2);
 
 document.getElementById('app').innerHTML = `
 
@@ -185,13 +190,14 @@ class="w-full rounded-[24px] object-cover">
 ${article.content_html || ''}
 </div>
 
+${related.length ? `
 <section class="max-w-[1100px] mx-auto border-t border-gray-200 mt-20 pt-14">
 
 <h2 class="text-3xl font-bold mb-10">
 À lire également
 </h2>
 
-<div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-2 gap-8">
 
 ${related.map(item => `
 <a href="?slug=${item.slug}" class="group block">
@@ -214,7 +220,7 @@ ${item.title}
 </h3>
 
 ${item.excerpt ? `
-<p class="text-sm text-gray-600 mt-2 line-clamp-3">
+<p class="text-sm text-gray-600 mt-2">
 ${item.excerpt}
 </p>
 ` : ''}
@@ -225,6 +231,7 @@ ${item.excerpt}
 </div>
 
 </section>
+` : ''}
 </main>
 `;
 
