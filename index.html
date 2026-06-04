@@ -1,236 +1,586 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog Flatway | Guides et conseils immobiliers</title>
 
-<title>Blog Flatway</title>
-<meta name="description" content="Guides et conseils immobiliers">
+  <!-- SEO Meta -->
+  <meta name="description" content="Blog Flatway : guides experts, checklists, modèles et stratégies pour optimiser vos annonces immobilières (SEO, photos, descriptions, mentions légales, marketing). Vendez plus vite et mieux." />
+  <link rel="canonical" href="https://flatway.fr/blog" />
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Blog Flatway | Guides et conseils immobiliers" />
+  <meta property="og:description" content="SEO immobilier, photos, descriptions, mentions légales, marketing et gestion des leads. Tout ce qu’il faut pour optimiser vos annonces et vendre plus vite." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://flatway.fr/blog" />
+  <meta property="og:image" content="https://flatway.fr/static/images/og-flatway-blog.jpg" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog Flatway | Centre de ressources immobilier" />
+  <meta name="twitter:description" content="Guides pratiques pour optimiser vos annonces : SEO, photos, descriptions, conformité, marketing, leads." />
+  <meta name="twitter:image" content="https://flatway.fr/static/images/og-flatway-blog.jpg" />
 
-<style>
-body{
-font-family:'Inter',sans-serif;
-background:#faf7f5;
-margin:0;
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <!-- JSON-LD Schema.org (Blog) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Flatway — Blog Immobilier",
+  "url": "https://flatway.fr/blog",
+  "description": "Guides experts pour optimiser vos annonces immobilières : SEO, photos, rédaction, mentions légales et marketing.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Flatway",
+    "url": "https://flatway.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://flatway.fr/_next/static/media/appIcon.4beb43c9.webp",
+      "width": 128,
+      "height": 128
+    }
+  }
 }
+</script>
 
-.article-card{
-background:white;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 8px 18px rgba(0,0,0,.05);
-transition:.2s;
-height:100%;
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  
+.blog-search-container{
+max-width:950px;
+margin:auto;
 display:flex;
-flex-direction:column;
+align-items:center;
+gap:12px;
+background:#fff;
+border:3px solid #7A1E1E !important;
+border-radius:24px;
+padding:14px 16px;
 }
 
-.article-card:hover{
-transform:translateY(-4px);
-}
-
-.article-card img{
-width:100%;
-height:220px;
-object-fit:cover;
-display:block;
-}
-
-.article-title{
-font-size:20px;
-font-weight:600;
-margin-bottom:10px;
-color:#2b1b1b;
-line-height:1.3;
-}
-
-.article-description{
-font-size:14px;
-color:#555;
-line-height:1.6;
+.blog-search-input{
 flex:1;
+border:none !important;
+outline:none;
+font-size:17px;
+background:transparent;
 }
 
-.article-category{
-font-size:12px;
-font-weight:600;
-text-transform:uppercase;
-letter-spacing:.08em;
+.blog-search-btn{
+width:56px;
+height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:transparent;
+border:none;
 color:#7A1E1E;
-margin-bottom:12px;
+cursor:pointer;
 }
 
-.article-meta{
-margin-top:16px;
-font-size:13px;
-color:#777;
+.blog-search-btn:hover{
+background:#faf7f5;
+border-radius:14px;
 }
 
-.no-result{
-grid-column:1/-1;
-text-align:center;
-padding:40px;
-color:#666;
+
+.blog-search-wrap{max-width:1150px;margin:auto;}
+.blog-search-container{
+background:#fff;
+border:3px solid #8d2020;
+border-radius:28px;
+padding:18px 26px;
+display:flex;
+align-items:center;
+gap:16px;
 }
+.blog-search-input{
+flex:1;
+border:none!important;
+outline:none;
+background:transparent;
+font-size:20px;
+color:#4b5563;
+}
+.blog-search-input::placeholder{color:#9ca3af;}
+.blog-search-btn{
+width:58px;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:none;
+background:transparent;
+color:#8d2020;
+cursor:pointer;
+}
+
 </style>
-
 </head>
 
-<body>
+<body class="bg-[#faf7f5] text-[#1a1a1a]">
 
-<header class="bg-[#7A1E1E] text-white py-16 px-6 text-center">
-<h1 class="text-5xl font-bold mb-4">
-Blog Flatway
-</h1>
+  <!-- HEADER -->
+  <header class="sticky top-0 z-30 bg-white border-b border-black/5">
+    <div class="max-w-[1240px] mx-auto px-5 py-[14px] flex items-center justify-between gap-5">
 
-<p class="max-w-3xl mx-auto text-lg">
-Conseils immobiliers, achat, vente, investissement,
-financement et stratégies immobilières.
-</p>
-</header>
+      <!-- Logo -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-[#7A1E1E] flex items-center justify-center text-white font-bold text-[20px]">
+          F
+        </div>
+        <div class="font-bold text-[18px] tracking-[0.02em] text-[#111111]">
+          Flatway
+        </div>
+      </div>
 
-<section class="max-w-[1240px] mx-auto px-5 py-12">
+      <!-- Nav -->
+      <nav class="hidden md:flex items-center gap-[26px] text-[15px]" aria-label="Navigation principale">
+        <a href="estimer" class="text-[#333333] font-medium hover:underline">Estimer</a>
+        <a href="acheter" class="text-[#333333] font-medium hover:underline">Acheter</a>
+        <a href="vendre" class="text-[#333333] font-medium hover:underline">Vendre</a>
+        <a href="blog"
+           class="relative text-[#7A1E1E] font-medium after:content-[''] after:absolute after:left-0 after:-bottom-[6px] after:h-[2px] after:w-full after:rounded-full after:bg-[#7A1E1E]">
+          Blog
+        </a>
+      </nav>
 
-<input
-id="search"
-type="text"
-placeholder="Rechercher un article..."
-class="w-full p-4 rounded-xl border border-gray-300 mb-10"
-/>
+      <!-- CTA -->
+      <div class="flex items-center gap-3 text-[14px]">
+        <button type="button"
+                class="rounded-full border border-[#dddddd] px-4 py-[7px] bg-white cursor-pointer text-sm">
+          Vous êtes professionnel ?
+        </button>
+        <button type="button"
+                class="rounded-full border-none px-[18px] py-2 bg-[#7A1E1E] text-white cursor-pointer text-sm shadow-[0_4px_12px_rgba(122,30,30,0.35)] hover:bg-[#5c1616]">
+          Découvrir Flatway
+        </button>
+      </div>
 
-<div
-id="articles"
-class="grid md:grid-cols-3 gap-6">
-</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative text-white overflow-hidden"
+    style="background: radial-gradient(circle at top left, #a23a3a 0, #7A1E1E 40%, #4a1111 90%); padding: 60px 20px 70px;">
+    <div class="pointer-events-none absolute inset-0 opacity-[0.16] mix-blend-soft-light bg-cover bg-center"
+      style="background-image: url('https://flatway.fr/static/images/hero-overlay.jpg');"></div>
+
+    <div class="relative max-w-[1240px] mx-auto grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-start z-[1] px-0">
+
+      <!-- Colonne gauche -->
+      <div class="px-2">
+        <div>
+          
+        </div>
+
+        <h1 class="text-[40px] leading-[1.15] font-bold mb-4">
+          Flatway, l’immobilier revisité pour les particuliers et les professionnels.
+        </h1>
+
+        <p class="text-[17px] max-w-[620px] opacity-90 mb-[22px]">
+          Un blog conçu pour vous guider dans tous vos projets immobiliers : compréhension du marché, stratégies d’achat ou de vente, optimisation d’annonces, financement, rénovation, IA, gestion locative et préparation d’un déménagement.
+          <br>Des ressources simples et actionnables pour particuliers, investisseurs et professionnels.
+        </p>
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="px-2">
+        <div class="bg-white text-[#1a1a1a] p-6 rounded-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.15)] max-w-[420px]">
+          <h2 class="text-[20px] font-semibold mb-2">Votre projet immobilier commence ici.</h2>
+          <p class="text-[15px] leading-[1.6] mb-4">
+            Que vous recherchiez des méthodes concrètes, des outils pratiques ou des conseils d’experts, ce blog vous accompagne à chaque étape de votre parcours immobilier.
+            Découvrez des guides structurés, des checklists utiles et des contenus pensés pour vous aider à prendre les meilleures décisions, quel que soit votre objectif.
+          </p>
+          <div class="text-[13px] opacity-80">
+            Guides, outils, checklists et analyses immobilières
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <main class="w-[92%] max-w-[1240px] mx-auto pt-10 pb-[70px]">
+
+    <!-- Intro -->
+    <section class="max-w-[800px] mx-auto mb-[60px] text-center">
+      
+    </section>
+
+    </section>
+
+<section class="max-w-[850px] mx-auto px-5 relative z-20 -mt-6 mb-10">
+
+  <div class="relative bg-white border-[2px] border-[#8D2020] rounded-[18px] px-5 py-4">
+
+    <div class="flex items-center">
+
+      <input
+        type="text"
+        id="blogSearch"
+        placeholder="Rechercher un mot-clé, une catégorie ou un sujet..."
+        autocomplete="off"
+        class="flex-1 bg-transparent outline-none border-none text-[15px] text-[#4B5563] placeholder:text-[#9CA3AF]"
+      >
+
+      <button
+        type="button"
+        aria-label="Rechercher"
+        class="ml-4 text-[#8D2020] shrink-0">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M20 20L16.65 16.65"></path>
+
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div
+      id="searchResults"
+      class="hidden absolute left-0 right-0 top-full mt-3 bg-white rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.12)] border border-black/5 overflow-hidden z-50">
+    </div>
+
+  </div>
 
 </section>
 
-<script>
-
-let allArticles = [];
-
-fetch('./articles-blog.json')
-.then(response => {
-
-if(!response.ok){
-throw new Error('Impossible de charger le JSON');
+  <!-- CONTENU -->
+    
+    <!-- STYLES DES CARDS -->
+    <style>
+      .article-card { background:white; border-radius:18px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); box-shadow:0 8px 18px rgba(0,0,0,0.05); transition:.25s; }
+      .article-card:hover { transform:translateY(-4px); box-shadow:0 14px 30px rgba(0,0,0,0.08); }
+      .article-img { width:100%; height:190px; object-fit:cover; }
+      .cat { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:#7A1E1E; font-weight:600; margin-bottom:4px; display:block; }
+      .article-title { font-size:18px; font-weight:600; color:#2b1b1b; margin-bottom:6px; }
+      .article-text { font-size:14px; opacity:0.85; line-height:1.55; }
+    
+.blog-search-container{
+max-width:950px;
+margin:auto;
+display:flex;
+align-items:center;
+gap:12px;
+background:#fff;
+border:3px solid #7A1E1E !important;
+border-radius:24px;
+padding:14px 16px;
 }
 
-return response.json();
+.blog-search-input{
+flex:1;
+border:none !important;
+outline:none;
+font-size:17px;
+background:transparent;
+}
 
-})
-.then(data => {
+.blog-search-btn{
+width:56px;
+height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:transparent;
+border:none;
+color:#7A1E1E;
+cursor:pointer;
+}
 
-allArticles = data.articles || [];
+.blog-search-btn:hover{
+background:#faf7f5;
+border-radius:14px;
+}
 
-render(allArticles);
 
-})
-.catch(error => {
+.blog-search-wrap{max-width:1150px;margin:auto;}
+.blog-search-container{
+background:#fff;
+border:3px solid #8d2020;
+border-radius:28px;
+padding:18px 26px;
+display:flex;
+align-items:center;
+gap:16px;
+}
+.blog-search-input{
+flex:1;
+border:none!important;
+outline:none;
+background:transparent;
+font-size:20px;
+color:#4b5563;
+}
+.blog-search-input::placeholder{color:#9ca3af;}
+.blog-search-btn{
+width:58px;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:none;
+background:transparent;
+color:#8d2020;
+cursor:pointer;
+}
 
-console.error(error);
+</style>
 
-document.getElementById('articles').innerHTML = `
-<div class="no-result">
-Impossible de charger les articles.
-</div>
-`;
+
+   
+<div id="dynamicCategories"></div>
+
+<script>
+const CATEGORY_LABELS = {
+  "acheter":"Acheter",
+  "déménagement":"Déménagement",
+  "entreprise":"Immobilier d'entreprise",
+  "estimer":"Estimer",
+  "financement":"Financement",
+  "ia":"L'IA dans l'immobilier",
+  "louer":"Louer",
+  "pro":"Pro de l'immobilier",
+  "renovation":"Rénovation",
+  "vendre":"Vendre"
+};
+
+let allArticles=[];
+
+fetch("./articles-blog.json")
+.then(r=>r.json())
+.then(data=>{
+  allArticles=data.articles||[];
+  renderCategories();
+  initSearch();
+});
+
+function renderCategories(){
+  const container=document.getElementById("dynamicCategories");
+
+  const grouped={};
+  allArticles.forEach(a=>{
+    const cat=a.category||"Autres";
+    if(!grouped[cat]) grouped[cat]=[];
+    grouped[cat].push(a);
+  });
+
+  container.innerHTML=Object.entries(grouped).map(([cat,articles])=>`
+  <section class="py-12">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-[28px] font-bold text-[#2b1b1b]">${CATEGORY_LABELS[cat]||cat}</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      ${articles.slice(0,3).map(a=>`
+      <a href="article.html?slug=${encodeURIComponent(a.slug||'')}" class="article-card block">
+        ${a.featured_image ? `<img src="${a.featured_image}" class="article-img">` : ''}
+        <div class="p-4">
+          <span class="cat">${CATEGORY_LABELS[cat]||cat}</span>
+          <h3 class="article-title">${a.title||''}</h3>
+          <p class="article-text">${a.meta_description||''}</p>
+        </div>
+      </a>`).join('')}
+    </div>
+  </section>`).join('');
+}
+
+function initSearch(){
+const searchInput=document.getElementById("blogSearch");
+const resultsBox=document.getElementById("searchResults");
+
+searchInput.addEventListener("input",()=>{
+const q=searchInput.value.toLowerCase().trim();
+
+if(q.length<2){
+resultsBox.classList.add("hidden");
+return;
+}
+
+const results=allArticles.filter(a=>
+(a.title||'').toLowerCase().includes(q) ||
+(a.meta_description||'').toLowerCase().includes(q) ||
+(a.category||'').toLowerCase().includes(q)
+);
+
+resultsBox.innerHTML=results.slice(0,8).map(a=>`
+<a href="article.html?slug=${encodeURIComponent(a.slug||'')}" class="block px-5 py-4 border-b border-black/5 hover:bg-[#faf7f5]">
+<div class="font-medium">${a.title}</div>
+<div class="text-sm text-[#7A1E1E] mt-1">${a.category}</div>
+</a>`).join('');
+
+resultsBox.classList.remove("hidden");
+});
+}
+</script>
+</main>
+<script>
+
+const articles = [
+
+  {title:"Comment estimer la valeur de votre maison ou appartement ?", url:"Estimer1.html", category:"Estimer"},
+  {title:"Qu’est-ce qui fait varier le prix d’un bien immobilier ?", url:"Estimer2.html", category:"Estimer"},
+  {title:"Prix au m² : comment le calculer et comment l’interpréter ?", url:"Estimer3.html", category:"Estimer"},
+
+  {title:"Comment savoir si le moment est favorable pour acheter un bien immobilier ?", url:"Acheter1.html", category:"Acheter"},
+  {title:"Les villes françaises qui attirent le plus les acheteurs", url:"Acheter2.html", category:"Acheter"},
+  {title:"Comment repérer un quartier qui va prendre de la valeur ?", url:"Acheter3.html", category:"Acheter"},
+
+  {title:"Comment trouver un logement à louer rapidement ?", url:"Louer1.html", category:"Louer"},
+  {title:"Dossier de location : comment être accepté du premier coup ?", url:"Louer2.html", category:"Louer"},
+  {title:"Comment trouver un logement étudiant ?", url:"Louer3.html", category:"Louer"},
+
+  {title:"Comment améliorer le référencement d’une annonce immobilière", url:"Vendre1.html", category:"Vendre"},
+  {title:"Les leviers qui améliorent la visibilité d’une annonce immobilière", url:"Vendre2.html", category:"Vendre"},
+  {title:"Les erreurs qui réduisent le nombre de contacts sur une annonce immobilière", url:"Vendre3.html", category:"Vendre"},
+
+  {title:"Comment obtenir un prêt immobilier", url:"Financement1.html", category:"Financement"},
+  {title:"Comment renforcer son dossier pour obtenir un prêt immobilier", url:"Financement2.html", category:"Financement"},
+  {title:"Quelle durée de crédit choisir : 15, 20 ou 25 ans ?", url:"Financement3.html", category:"Financement"},
+
+  {title:"Audit énergétique obligatoire", url:"Renovation1.html", category:"Rénovation"},
+  {title:"Quelles rénovations apportent le meilleur retour sur investissement ?", url:"Renovation2.html", category:"Rénovation"},
+  {title:"Aides à la rénovation énergétique", url:"Renovation3.html", category:"Rénovation"},
+
+  {title:"Comment obtenir davantage de mandats exclusifs ?", url:"Pro2.html", category:"Professionnels"},
+  {title:"Les obligations des vendeurs que les agents immobiliers doivent connaître", url:"Pro3.html", category:"Professionnels"},
+  {title:"Les erreurs qui font fuir les vendeurs", url:"Pro1.html", category:"Professionnels"},
+
+  {title:"Locaux commerciaux, bureaux ou entrepôts", url:"Entreprise1.html", category:"Entreprise"},
+  {title:"SCPI, foncières, achat direct", url:"Entreprise2.html", category:"Entreprise"},
+  {title:"Coworking, bureaux flexibles ou privés", url:"Entreprise3.html", category:"Entreprise"},
+
+  {title:"Peut-on utiliser l’IA pour améliorer la visibilité de son annonce ?", url:"IA1.html", category:"IA"},
+  {title:"Photos IA, retouches et home staging virtuel", url:"IA2.html", category:"IA"},
+  {title:"IA vs agent immobilier", url:"IA3.html", category:"IA"},
+
+  {title:"Comment organiser un déménagement étape par étape", url:"Déménagement1.html", category:"Déménagement"},
+  {title:"Déménager seul ou avec des professionnels", url:"Déménagement2.html", category:"Déménagement"},
+  {title:"Aides financières au déménagement", url:"Déménagement3.html", category:"Déménagement"}
+
+];
+
+const searchInput = document.getElementById("blogSearch");
+const resultsBox = document.getElementById("searchResults");
+
+function normalize(text){
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
+}
+
+function levenshtein(a,b){
+  const matrix=[];
+
+  for(let i=0;i<=b.length;i++){
+    matrix[i]=[i];
+  }
+
+  for(let j=0;j<=a.length;j++){
+    matrix[0][j]=j;
+  }
+
+  for(let i=1;i<=b.length;i++){
+    for(let j=1;j<=a.length;j++){
+      if(b.charAt(i-1)===a.charAt(j-1)){
+        matrix[i][j]=matrix[i-1][j-1];
+      }else{
+        matrix[i][j]=Math.min(
+          matrix[i-1][j-1]+1,
+          matrix[i][j-1]+1,
+          matrix[i-1][j]+1
+        );
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
+}
+
+searchInput.addEventListener("input", ()=>{
+
+  const query = normalize(searchInput.value.trim());
+
+  if(query.length < 2){
+    resultsBox.classList.add("hidden");
+    return;
+  }
+
+  const results = articles.filter(article => {
+
+    const title = normalize(article.title);
+    const category = normalize(article.category);
+
+    if(title.includes(query)) return true;
+    if(category.includes(query)) return true;
+
+    const words = title.split(" ");
+
+    return words.some(word =>
+      levenshtein(query, word) <= 2
+    );
+
+  });
+
+  if(results.length === 0){
+
+    resultsBox.innerHTML = `
+      <div class="px-5 py-4 text-sm text-gray-500">
+        Aucun article trouvé
+      </div>
+    `;
+
+  } else {
+
+    resultsBox.innerHTML = results.slice(0,8).map(article => `
+      <a href="${article.url}"
+         class="block px-5 py-4 border-b border-black/5 hover:bg-[#faf7f5] transition">
+        <div class="font-medium">${article.title}</div>
+        <div class="text-sm text-[#7A1E1E] mt-1">${article.category}</div>
+      </a>
+    `).join("");
+
+  }
+
+  resultsBox.classList.remove("hidden");
 
 });
 
-function render(list){
-
-const container = document.getElementById('articles');
-
-if(!list.length){
-
-container.innerHTML = `
-<div class="no-result">
-Aucun article trouvé.
-</div>
-`;
-
-return;
-
-}
-
-container.innerHTML = list.map(article => `
-
-<a
-href="article.html?slug=${encodeURIComponent(article.slug || '')}"
-class="article-card block">
-
-${article.featured_image ? `
-<img
-src="${article.featured_image}"
-alt="${article.featured_image_alt || article.title || ''}">
-` : ''}
-
-<div class="p-5 flex flex-col h-full">
-
-<div class="article-category">
-${article.category || ''}
-</div>
-
-<h2 class="article-title">
-${article.title || ''}
-</h2>
-
-<p class="article-description">
-${article.excerpt || article.meta_description || ''}
-</p>
-
-<div class="article-meta">
-${article.reading_time ? `${article.reading_time} min de lecture` : ''}
-</div>
-
-</div>
-
-</a>
-
-`).join('');
-
-}
-
-document
-.getElementById('search')
-.addEventListener('input', e => {
-
-const q = e.target.value.toLowerCase().trim();
-
-render(
-allArticles.filter(article => {
-
-const title =
-(article.title || '').toLowerCase();
-
-const excerpt =
-(article.excerpt || '').toLowerCase();
-
-const description =
-(article.meta_description || '').toLowerCase();
-
-const category =
-(article.category || '').toLowerCase();
-
-return (
-title.includes(q) ||
-excerpt.includes(q) ||
-description.includes(q) ||
-category.includes(q)
-);
-
-})
-);
-
+document.addEventListener("click",(e)=>{
+  if(
+    !resultsBox.contains(e.target)
+    && e.target !== searchInput
+  ){
+    resultsBox.classList.add("hidden");
+  }
 });
 
 </script>
-
-</body>
+  </body>
 </html>
