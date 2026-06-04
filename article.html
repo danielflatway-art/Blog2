@@ -131,10 +131,17 @@ document.getElementById('app').innerHTML = `
 <section class="bg-[#fafafa] border-b border-gray-100">
 <div class="max-w-[1100px] mx-auto px-5 py-12">
 
-<div class="mb-6 text-sm text-gray-500">
-Accueil › Blog
-${article.category ? `› ${article.category}` : ''}
-› ${article.title}
+<div class="mb-6 text-sm text-gray-500 flex flex-wrap items-center gap-1">
+<a href="/">Accueil</a>
+<span>›</span>
+<a href="/blog">Blog</a>
+
+${article.category ? `
+<>
+<span>›</span>
+<span class="capitalize">${article.category}</span>
+</>
+` : ''}
 </div>
 
 <div class="max-w-[760px]">
