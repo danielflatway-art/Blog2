@@ -394,8 +394,16 @@ function renderCategories(){
   container.innerHTML=Object.entries(grouped).map(([cat,articles])=>`
   <section class="py-12">
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-[28px] font-bold text-[#2b1b1b]">${CATEGORY_LABELS[cat]||cat}</h2>
-    </div>
+  <h2 class="text-[28px] font-bold text-[#2b1b1b]">
+    ${CATEGORY_LABELS[cat] || cat}
+  </h2>
+
+  <a
+    href="categorie.html?categorie=${encodeURIComponent(cat)}"
+    class="text-[#7A1E1E] font-semibold hover:underline">
+    Voir tous les articles →
+  </a>
+</div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       ${articles.slice(0,3).map(a=>`
       <a href="article.html?slug=${encodeURIComponent(a.slug||'')}" class="article-card block">
