@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Chargement...</title>
-<meta name="description" content="">
-<link rel="canonical" href="">
+<meta name="description" content="" />
+<link rel="canonical" href="" />
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+body{font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased}
 .prose h2{font-size:30px;font-weight:700;margin:32px 0 16px;color:#111}
 .prose h3{font-size:22px;font-weight:600;margin:26px 0 12px;color:#7A1E1E}
 .prose p{margin:14px 0;line-height:1.8}
 .prose ul{list-style:disc;padding-left:24px;margin:14px 0}
 .prose ol{list-style:decimal;padding-left:24px;margin:14px 0}
+.prose img{border-radius:20px;margin:24px 0}
 </style>
 </head>
+
 <body class="m-0 bg-white text-[#1a1a1a] pt-[70px]">
 
 <header class="fixed top-0 left-0 w-full z-30 bg-white shadow">
 <div class="h-[70px] w-full flex justify-between items-center px-[30px] gap-10">
-<a href="./index.html"><span class="font-bold text-[#980000] text-xl">Flatway</span></a>
+<a href="./index.html">
+<span class="font-bold text-[#980000] text-xl">Flatway</span>
+</a>
 <div class="hidden sm:flex w-full px-[10px]">
 <a href="./index.html" class="text-[#980000] px-2 py-2 rounded-lg text-md font-medium">Blog</a>
 </div>
@@ -37,74 +43,100 @@ const slug = new URLSearchParams(location.search).get('slug');
 fetch('./articles-blog.json')
 .then(r=>r.json())
 .then(data=>{
- const article=data.articles.find(a=>a.slug===slug);
 
- if(!article){
-   document.getElementById('app').innerHTML='<div class="max-w-4xl mx-auto p-10"><h1>Article introuvable</h1></div>';
-   return;
- }
+const article = data.articles.find(a => a.slug === slug);
 
- document.title=article.seo_title || article.title;
- document.querySelector('meta[name="description"]').content=article.meta_description||'';
+if(!article){
+ document.getElementById('app').innerHTML='<div class="max-w-4xl mx-auto p-10"><h1>Article introuvable</h1></div>';
+ return;
+}
 
- const canon=document.querySelector('link[rel="canonical"]');
- if(article.canonical) canon.href=article.canonical;
+document.title = article.seo_title || article.title;
+document.querySelector('meta[name="description"]').content = article.meta_description || '';
+if(article.canonical){
+ document.querySelector('link[rel="canonical"]').href = article.canonical;
+}
 
- let related='';
- if(article.related_articles && article.related_articles.length){
-   related='<section class="mt-16 border-t border-black/10 pt-10"><h2 class="text-[28px] font-bold mb-6 text-[#111]">À lire également</h2><div class="grid md:grid-cols-2 gap-6">';
-   article.related_articles.forEach(sl=>{
-      const rel=data.articles.find(a=>a.slug===sl);
-      if(rel){
-       related+=`<a href="article.html?slug=${rel.slug}" class="block bg-white border border-black/5 rounded-[18px] p-6 shadow-sm hover:shadow-md transition">
+let related='';
+if(article.related_articles?.length){
+ related=`
+ <section class="mt-16 border-t border-black/10 pt-10">
+ <h2 class="text-[28px] font-bold mb-6 text-[#111]">À lire également</h2>
+ <div class="grid md:grid-cols-2 gap-6">`;
+
+ article.related_articles.forEach(sl=>{
+   const rel=data.articles.find(a=>a.slug===sl);
+   if(rel){
+     related += `
+     <a href="preview.html?slug=${rel.slug}" class="block bg-white border border-black/5 rounded-[18px] p-6 shadow-sm hover:shadow-md transition">
        <div class="text-[#7A1E1E] text-sm font-semibold mb-2">${rel.category||''}</div>
        <h3 class="font-bold text-[20px] mb-2 text-black">${rel.title}</h3>
-       <p class="text-[#666] text-[15px]">${rel.excerpt||''}</p></a>`;
-      }
-   });
-   related+='</div></section>';
- }
+       <p class="text-[#666] text-[15px]">${rel.excerpt||''}</p>
+     </a>`;
+   }
+ });
+ related += '</div></section>';
+}
 
- document.getElementById('app').innerHTML=`
+document.getElementById('app').innerHTML = `
+
 <section class="bg-white px-5 pt-[42px] pb-[24px]">
 <div class="max-w-[760px] mx-auto">
-<div class="text-[13px] text-gray-500 mb-4">Blog › ${article.category||''}</div>
+
+<div class="text-[13px] text-gray-500 mb-4">
+Blog › ${article.category || ''}
+</div>
 
 <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-[#f6f1ef] text-[#7A1E1E] text-[11px] uppercase tracking-[0.12em] mb-4">
-${article.category||''}
+${article.category || ''}
 </div>
 
-<h1 class="text-[42px] leading-[1.15] font-bold text-[#111] mb-5">${article.title}</h1>
+<h1 class="text-[42px] leading-[1.15] font-bold text-[#111] mb-5">
+${article.title}
+</h1>
 
-<p class="text-[20px] leading-[1.7] text-[#555] mb-6">${article.excerpt||''}</p>
+<p class="text-[20px] leading-[1.7] text-[#555] mb-6">
+${article.excerpt || ''}
+</p>
 
 <div class="flex items-center gap-3 text-[14px] text-gray-600 mb-8">
+<img src="https://flatway.fr/_next/static/media/appIcon.4beb43c9.webp" class="w-10 h-10 rounded-lg">
 <div>
-<div class="font-medium text-[#111]">${article.author||'Rédaction Flatway'}</div>
-<div>Temps de lecture : ${article.reading_time||''} min</div>
+<div class="font-medium text-[#111]">${article.author || 'Rédaction Flatway'}</div>
+<div>Temps de lecture : ${article.reading_time || ''} min</div>
 </div>
 </div>
 
-${article.featured_image?`<img src="${article.featured_image}" alt="${article.featured_image_alt||article.title}" class="w-full rounded-[20px] object-cover shadow-[0_10px_30px_rgba(0,0,0,0.12)]">`:''}
+${article.featured_image ? `
+<div class="relative">
+<img src="${article.featured_image}"
+alt="${article.featured_image_alt || article.title}"
+class="w-full rounded-[20px] object-cover shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+</div>` : ''}
+
 </div>
 </section>
 
 <main class="pt-8 pb-16 px-5">
 <div class="max-w-[760px] mx-auto">
+
 <article class="prose max-w-none">
-${article.content_html||''}
+${article.content_html || ''}
 </article>
 
 <div class="mt-[18px] text-[14px] text-left">
 <a href="./index.html" class="inline-flex items-center gap-1.5 text-[#7A1E1E] font-medium hover:underline">
-<span>←</span><span>Retour au blog Flatway</span>
+<span>←</span>
+<span>Retour au blog Flatway</span>
 </a>
 </div>
 
 ${related}
+
 </div>
 </main>`;
 });
 </script>
+
 </body>
 </html>
